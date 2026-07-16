@@ -83,7 +83,7 @@ export const UserCard = ({ user, repos }) => {
           {
             <button
               onClick={handleCopy}
-              className="font-mono text-xs text-zic-500 hover:text-white transistion-colors"
+              className="font-mono text-xs text-zinc-500 hover:text-white transition-colors"
             >
               {copied ? "✓ copied!" : "copy url"}
             </button>
