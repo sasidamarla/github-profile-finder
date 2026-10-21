@@ -35,8 +35,8 @@ A small web app to look up any GitHub user and see their profile at a glance: av
 
 ```bash
 # 1. Clone the repo
-git clone https://github.com/<your-username>/github-search.git
-cd github-search
+git clone https://github.com/sasidamarla/github-profile-finder.git
+cd github-profile-finder
 
 # 2. Install dependencies
 npm install
@@ -73,4 +73,4 @@ The app uses GitHub's public API without authentication, which allows about 60 r
 
 ## Author
 
-**Sasi**: [GitHub](https://github.com/<your-username>) · [LinkedIn](https://linkedin.com/in/<your-profile>)
+**Sasi**: [GitHub](https://github.com/YOUR-USERNAME)
