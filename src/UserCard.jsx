@@ -6,9 +6,13 @@ export const UserCard = ({ user, repos }) => {
     year: "numeric",
   });
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(`https://github.com/${user.login}`);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(`https://github.com/${user.login}`);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Clipboard can be blocked by the browser; fail quietly
+    }
   };
 
   return (
@@ -80,14 +84,12 @@ export const UserCard = ({ user, repos }) => {
           >
             View Profile →
           </a>
-          {
-            <button
-              onClick={handleCopy}
-              className="font-mono text-xs text-zinc-500 hover:text-white transition-colors"
-            >
-              {copied ? "✓ copied!" : "copy url"}
-            </button>
-          }
+          <button
+            onClick={handleCopy}
+            className="font-mono text-xs text-zinc-500 hover:text-white transition-colors"
+          >
+            {copied ? "✓ copied!" : "copy url"}
+          </button>
 
           <span className="font-mono text-xs text-zinc-600">
             since {joined}

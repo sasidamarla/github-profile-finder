@@ -3,7 +3,7 @@ import { useState } from "react";
 export const SearchBar = ({
   username,
   setUsername,
-  SearchUser,
+  onSearch,
   loading,
   history,
 }) => {
@@ -16,14 +16,14 @@ export const SearchBar = ({
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       setShowDropdown(false);
-      SearchUser();
+      onSearch();
     }
   };
 
   const handleHistoryClick = (name) => {
     setUsername(name);
     setShowDropdown(false);
-    SearchUser(name);
+    onSearch(name);
   };
 
   return (
@@ -33,6 +33,7 @@ export const SearchBar = ({
           <input
             className="bg-zinc-900 border border-zinc-700 text-white placeholder-zinc-500 px-4 py-2 rounded-lg outline-none focus:border-zinc-400 font-mono text-sm w-64"
             type="text"
+            aria-label="GitHub username"
             maxLength={39}
             placeholder="Enter username..."
             value={username}
@@ -61,7 +62,7 @@ export const SearchBar = ({
         <button
           className="bg-white text-zinc-950 px-4 py-2 rounded-lg text-sm font-medium hover:bg-zinc-200 transition-colors disabled:opacity-50"
           disabled={loading}
-          onClick={() => SearchUser()}
+          onClick={() => onSearch()}
         >
           {loading ? "Searching..." : "Search"}
         </button>

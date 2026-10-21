@@ -9,10 +9,12 @@ function App() {
   const [history, setHistory] = useState([]);
   const { user, repos, loading, error, searchUser } = useGitHubUser();
 
-  const handleSearch = (name = username) => {
+  const handleSearch = async (name = username) => {
     const trimmed = name.trim();
     if (!trimmed) return;
-    searchUser(trimmed);
+    const found = await searchUser(trimmed);
+    // Only remember searches that actually found a user
+    if (!found) return;
     setHistory((prev) => {
       const filtered = prev.filter(
         (h) => h.toLowerCase() !== trimmed.toLowerCase(),
@@ -35,7 +37,7 @@ function App() {
       <SearchBar
         username={username}
         setUsername={setUsername}
-        SearchUser={handleSearch}
+        onSearch={handleSearch}
         loading={loading}
         history={history}
       />
